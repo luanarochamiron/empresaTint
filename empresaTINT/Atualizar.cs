@@ -12,9 +12,15 @@ namespace empresaTINT
 {
     public partial class Atualizar : Form
     {
+        DAO atu;
         public Atualizar()
         {
+            atu = new DAO();
             InitializeComponent();
+            textBox1.ReadOnly = false;
+            textBox2.ReadOnly = true;
+            textBox3.ReadOnly= true;
+            textBox4.ReadOnly = true;
         }
 
         private void consultarNovo_Click(object sender, EventArgs e)
@@ -44,7 +50,16 @@ namespace empresaTINT
 
         private void button2_Click(object sender, EventArgs e)
         {
+            int codigo = Convert.ToInt32(textBox1.Text);
+            string nome = textBox2.Text;
+            string telefone = textBox3.Text;
+            string endereco = textBox4.Text;
 
+            atu.Atualizar(codigo, "nome", nome);
+            atu.Atualizar(codigo, "telefone", telefone);
+            atu.Atualizar(codigo, "endereco", endereco);
+            MessageBox.Show("Dados atualizados com sucesso!");
+            this.Close();
         }//fim do botao atualizar
 
         private void button1_Click(object sender, EventArgs e)
@@ -71,5 +86,32 @@ namespace empresaTINT
         {
 
         }
+
+        private void Atualizar_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox2.Text = "Informe o código";
+                textBox3.Text = "Informe o código";
+                textBox4.Text = "Informe o código";
+            }
+            else
+            {
+                int codigo = Convert.ToInt32(textBox1.Text); // coletnado o codigo
+
+                textBox2.Text = atu.RetornarNome(codigo); // preenchendo o campo nome 
+                textBox2.Text = atu.RetornarTelefone(codigo);
+                textBox2.Text = atu.RetornarEndereco(codigo);
+                textBox1.ReadOnly = true;
+                textBox2.ReadOnly = false;
+                textBox3.ReadOnly = false;
+                textBox4.ReadOnly = false;
+            }
+        }// fim do botao buscar
     }//fim do projeto
 }//fim do projeto

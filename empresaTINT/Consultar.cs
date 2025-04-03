@@ -12,10 +12,15 @@ namespace empresaTINT
 {
     public partial class Consultar : Form
     {
+        DAO consul;
         public Consultar()
         {
+            consul = new DAO();
             InitializeComponent();
-        }
+            ConfigurarDataGrid();
+            NomeColunas(); //nomemando as colunas
+            AdicionarDados();//Adiconando os dados para visualizar
+        }//fim do construtor
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -31,31 +36,6 @@ namespace empresaTINT
         {
             this.Close();
         }//fim do voltar
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }//fim da caixa endereço
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }//fim da caixa telefone
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }//fim da caixa nome
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }// fim da caixa codigo
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }//fim do botao consultar
 
         private void label5_Click(object sender, EventArgs e)
         {
@@ -76,5 +56,40 @@ namespace empresaTINT
         {
 
         }
+
+        public void NomeColunas()
+        {
+            dataGridView1.Columns[0].Name = "Código";
+            dataGridView1.Columns[1].Name = "Nome";
+            dataGridView1.Columns[2].Name = "Telefone";
+            dataGridView1.Columns[3].Name = "Endereço";
+        }//fim nome colunas
+
+        public void ConfigurarDataGrid()
+        {
+            dataGridView1.AllowUserToAddRows = false; // nao pode adicionar linhas 
+            dataGridView1.AllowUserToDeleteRows = false; // ele nao pode apagar linhas 
+            dataGridView1.AllowUserToResizeColumns = false;// nao pode redimensaionar as colunas 
+            dataGridView1.AllowUserToResizeRows = false; // nao pode redimensaionar as linhas 
+
+            dataGridView1.ColumnCount = 4;
+        }// configurar data grid
+
+        public void AdicionarDados()
+        {
+            consul.PreencherVetor();//Preencher os vetores c/ dados do bd
+            for(int i = 0; i < consul.QuantidadeDeDados(); i++) 
+            {
+                dataGridView1.Rows.Add(consul.codigo[i], consul.nome[i], consul.telefone[i], consul.endereco[i]);
+
+            }//fim do for
+
+
+        }// Fim do adicionar dados
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }// fim do data grid view
     }// fim da classe
 }// fim do projeto

@@ -39,6 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // consultarNovo
@@ -80,9 +81,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(164, 154);
+            this.textBox1.Location = new System.Drawing.Point(152, 156);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(69, 20);
             this.textBox1.TabIndex = 30;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -158,11 +159,24 @@
             this.label2.Text = "Nome";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Black;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(241, 154);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 35;
+            this.button3.Text = "buscar";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Atualizar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 692);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.consultarNovo);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
@@ -176,6 +190,7 @@
             this.Controls.Add(this.label2);
             this.Name = "Atualizar";
             this.Text = "Atualizar";
+            this.Load += new System.EventHandler(this.Atualizar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +209,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button3;
     }
 }
